@@ -31,5 +31,29 @@ public class HomeController {
 	public String orderSuccess() {
 		return "orderSuccess";
 	}
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join() {
+		return "join";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	@RequestMapping(value = "/my-page", method = RequestMethod.GET)
+	public String myPage() {
+		return "myPage";
+	}
+	@RequestMapping(value = "/order-list", method = RequestMethod.GET)
+	public String orderList() {
+		return "orderList";
+	}
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {
+		return "profile";
+	}
+	@RequestMapping(value = "/review-list", method = RequestMethod.GET)
+	public String reviewList() {
+		return "reviewList";
+	}
 	
 }
