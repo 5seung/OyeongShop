@@ -10,16 +10,6 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
-	<Context>
-		<WatchedResource>WEB-INF/web.xml</WatchedResource>
-		<WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
-		<Resource name="jdbc/myspring" auth="Container"
-			type="javax.sql.DataSource"
-			driverClassName="oracle.jdbc.driver.OracleDriver"
-			url="jdbc:oracle:thin:@localhost:1521:XE" username="oyeong"
-			password="oyeong" maxTotal="20" maxIdle="10" maxWaitMillis="-1" />
-	</Context>
-	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener

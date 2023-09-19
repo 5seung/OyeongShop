@@ -44,7 +44,7 @@ public class JDBCTests {
 
 		try {
 			PreparedStatement pstmt = con.prepareStatement(insertSql);
-			pstmt.setString(1, "test2");//Idx
+			pstmt.setString(1, "test3");//Idx
 			pstmt.setString(2, "test");//Name
 			pstmt.setString(3, "tester");//InputDay
 			pstmt.setString(4, "Y");//InputDay
