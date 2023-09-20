@@ -18,24 +18,11 @@ body {
 	align-items: flex-start;
 	padding: 20px;
 }
-
-#left {
-	flex: 1;
-	background-color: #f0f0f0;
-	padding: 10px;
+#left{
+	width: 25%;
 }
-
-#right {
-	flex: 3;
-	background-color: #fff;
-	padding: 10px;
-}
-
-#bottom {
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	padding: 10px;
+#right{
+	padding: 0 3em;
 }
 
 #loginform {
@@ -79,18 +66,18 @@ body {
 	<div id="container">
 		<div id="left">
 			<!-- Left Content -->
-			<!-- 여기에 좌측 컨텐츠를 추가하세요. -->
+			<jsp:include page="./common/sideNav.jsp"></jsp:include>
 		</div>
 		<div id="right">
 			<!-- Right Content - 로그인 폼 -->
 			<form id="loginform" action="" method="post">
 				<label for="loginid">아이디</label> <input type="text" id="loginid"
-					name="loginid" required><br>
-				<br> <label for="loginpwd">비밀번호</label> <input type="password"
-					id="loginpwd" name="loginpwd" required><br>
-				<br> <input type="submit" value="로그인"> <label
-					for="joinandsearchpwd"> <input type="button" value="회원가입">
-					<input type="button" value="비밀번호 찾기">
+					name="loginid" required><br> <br> <label
+					for="loginpwd">비밀번호</label> <input type="password" id="loginpwd"
+					name="loginpwd" required><br> <br> <input
+					type="submit" value="로그인"> <label for="joinandsearchpwd">
+					<input type="button" value="회원가입"> <input type="button"
+					value="비밀번호 찾기">
 				</label>
 			</form>
 		</div>

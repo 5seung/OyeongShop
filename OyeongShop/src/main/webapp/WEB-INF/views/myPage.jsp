@@ -2,19 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>마이 페이지</title>
+    <title>OyeongShop</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-        }
-
-        #header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
         }
 
         #container {
@@ -33,13 +26,6 @@
         #right {
             flex: 3;
             background-color: #fff;
-            padding: 10px;
-        }
-
-        #bottom {
-            background-color: #333;
-            color: #fff;
-	        text-align: center;
             padding: 10px;
         }
 
@@ -62,9 +48,7 @@
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>웹 페이지</h1>
-    </div>
+<jsp:include page="./common/header.jsp"></jsp:include>
     <div id="container">
         <div id="left">
             <!-- Left Content -->
@@ -74,7 +58,7 @@
             <!-- Right Content - MyPage 폼 -->
             <div id="mypage">
 	            <h2>MY PAGE</h2>
-	            <button type="button" onclick="location.href='';" id="btnorderlist" name="orderlist">ORDER 주문내역 조회</button>
+	            <button type="button" onclick="location.href='http://localhost:8090/oyeongshop/order-list';" id="btnorderlist" name="orderlist">ORDER 주문내역 조회</button>
 				<h5>고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.</h5>
 				<!-- 이거 누르면 비밀번호 확인 창 뜨게! -->
 				<button type="button" onclick="location.href='';" id="btnprofile" name="profile">PROFILE 회원 정보</button>
@@ -83,8 +67,6 @@
             </div>
         </div>
     </div>
-    <div id="bottom">
-        <p>© 2023 웹 페이지</p>
-    </div>
+<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>

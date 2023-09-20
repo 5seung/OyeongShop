@@ -17,6 +17,7 @@ img {
 </style>
 </head>
 <body>
+	<jsp:include page="./common/header.jsp"></jsp:include>
 	<h2>Outer</h2>
 	<table>
 		<tr>

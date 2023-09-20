@@ -55,7 +55,7 @@ a{
 			<a href="http://localhost:8090/oyeongshop/">OyeongShop</a>
 		</div>
 		<div id="header-button">
-			<a class="gradient-btn" href="#">login</a>
+			<a class="gradient-btn" href="http://localhost:8090/oyeongshop/login">login</a>
 			<a class="gradient-btn" href="#">cart</a>
 		</div>
 	</header>

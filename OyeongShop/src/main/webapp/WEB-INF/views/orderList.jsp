@@ -10,13 +10,6 @@
             font-family: Arial, sans-serif;
         }
 
-        #header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-
         #container {
             display: flex;
             justify-content: space-between;
@@ -36,13 +29,6 @@
             padding: 10px;
         }
 
-        #bottom {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-
         #orderlist {
             max-width: 100%;
             margin: 0 auto;
@@ -51,9 +37,7 @@
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>웹 페이지</h1>
-    </div>
+<jsp:include page="./common/header.jsp"></jsp:include>
     <div id="container">
         <div id="left">
             <!-- Left Content -->
@@ -110,8 +94,6 @@
        	 	</div>
         </div>
     </div>
-    <div id="bottom">
-        <p>© 2023 웹 페이지</p>
-    </div>
+<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>
