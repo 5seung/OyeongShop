@@ -6,13 +6,16 @@
 <head>
 <title>OyeongShop</title>
 <style type="text/css">
+nav{
+	padding-left:1em; 
+}
 </style>
 </head>
 <body>
 	<nav>
 		<ul>
-			<li><a href="#">Shop</a></li>
-			<li><a href="#">Mypage</a></li>
+			<li><a href="http://localhost:8090/oyeongshop/">Shop</a></li>
+			<li><a href="http://localhost:8090/oyeongshop/my-page">Mypage</a></li>
 			<li><a href="#">Order</a></li>
 			<li><a href="#">Community</a></li>
 			<li><a href="#">Instagram</a></li>

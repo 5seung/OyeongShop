@@ -41,10 +41,7 @@ public class HomeController {
 	public String join() {
 		return "join";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "login";
-	}
+	
 	@RequestMapping(value = "/my-page", method = RequestMethod.GET)
 	public String myPage() {
 		return "myPage";

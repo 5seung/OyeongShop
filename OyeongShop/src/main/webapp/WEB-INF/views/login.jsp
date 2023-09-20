@@ -17,17 +17,19 @@ body {
 	justify-content: space-between;
 	align-items: flex-start;
 	padding: 20px;
+	min-height: 22em; 
 }
 #left{
 	width: 25%;
 }
 #right{
+	width: 100%;
 	padding: 0 3em;
 }
 
 #loginform {
-	max-width: 300px;
-	margin: 0 auto;
+	padding-left: 25%;
+	width: 22em;
 }
 
 #loginform label {
@@ -52,7 +54,7 @@ body {
 	margin-bottom: 10px;
 }
 
-#loginform input[type="button"] {
+.my-btn {
 	width: 49%;
 	color: black;
 	border: none;
@@ -70,14 +72,15 @@ body {
 		</div>
 		<div id="right">
 			<!-- Right Content - 로그인 폼 -->
-			<form id="loginform" action="" method="post">
-				<label for="loginid">아이디</label> <input type="text" id="loginid"
-					name="loginid" required><br> <br> <label
-					for="loginpwd">비밀번호</label> <input type="password" id="loginpwd"
-					name="loginpwd" required><br> <br> <input
-					type="submit" value="로그인"> <label for="joinandsearchpwd">
-					<input type="button" value="회원가입"> <input type="button"
-					value="비밀번호 찾기">
+			<form id="loginform" action="/oyeongshop/login.do"  method="post">
+				<label for="loginid">아이디</label> <input type="text" id="loginid" name="userId" required>
+				<br> <br> 
+				<label for="loginpwd">비밀번호</label> <input type="password" id="loginpwd" name="password" required>
+				<br> <br> 
+				<input type="submit" value="로그인"> 
+				<label for="joinandsearchpwd">
+					<button type="button" onclick="location.href='http://localhost:8090/oyeongshop/join';" class="my-btn">회원가입</button>
+					<button type="button" onclick="" class="my-btn">비밀번호 찾기</button>
 				</label>
 			</form>
 		</div>
