@@ -74,5 +74,6 @@ img {
 			<p>review(0)</p>
 		</div>
 	</form>
+	<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>

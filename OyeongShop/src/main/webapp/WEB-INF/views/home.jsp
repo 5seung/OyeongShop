@@ -22,6 +22,7 @@ img {
 </style>
 </head>
 <body>
+<jsp:include page="./common/header.jsp"></jsp:include>
 	<table>
 		<tr>
 			<td>
@@ -62,5 +63,6 @@ img {
 			</td>
 		</tr>
 	</table>
+<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>

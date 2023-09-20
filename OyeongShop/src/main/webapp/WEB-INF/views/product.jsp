@@ -31,5 +31,6 @@ img {
 				<p>₩49,400</p></td>
 		</tr>
 	</table>
+	<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>

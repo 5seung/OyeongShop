@@ -28,8 +28,8 @@ public class JDBCTests {
 						"oyeong",
 						"oyeong")){
 			System.out.println(con);
-			int executeSql = doInsert(con);
-			System.out.println("총 "+executeSql+"행 실행했습니다.");
+//			int executeSql = doInsert(con);
+//			System.out.println("총 "+executeSql+"행 실행했습니다.");
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}

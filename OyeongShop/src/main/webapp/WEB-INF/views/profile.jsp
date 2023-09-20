@@ -118,9 +118,7 @@
             </form>
         </div>
     </div>
-    <div id="bottom">
-        <p>© 2023 웹 페이지</p>
-    </div>
+	<jsp:include page="./common/footer.jsp"></jsp:include>
     
 <!--     <script type="text/javascript">
 	function login(){
