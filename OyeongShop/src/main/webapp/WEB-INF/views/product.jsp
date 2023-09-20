@@ -17,6 +17,7 @@ img {
 </style>
 </head>
 <body>
+	<jsp:include page="./common/header.jsp"></jsp:include>
 	<h2>Outer</h2>
 	<table>
 		<tr>
@@ -31,5 +32,6 @@ img {
 				<p>₩49,400</p></td>
 		</tr>
 	</table>
+	<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>
