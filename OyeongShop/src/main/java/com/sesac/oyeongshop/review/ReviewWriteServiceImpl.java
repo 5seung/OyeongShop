@@ -19,6 +19,7 @@ public class ReviewWriteServiceImpl implements ReviewWriteService {
 	
 	@Override
 	public int insert(String reviewContent) {
+		System.out.println("rwService");
 		int result = dao.insert(reviewContent);
 		System.out.println(result);
 		return result;

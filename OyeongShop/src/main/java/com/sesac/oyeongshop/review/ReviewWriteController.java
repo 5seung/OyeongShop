@@ -22,7 +22,7 @@ public class ReviewWriteController {
 	//실행메서드
 	@RequestMapping(value = "/reviewWrite.do", method = RequestMethod.GET)
 	public String reviewWrite(String userId, String reviewContent) {
-		System.out.println("CONTOROLLER:");
+		System.out.println(reviewContent);
 		service.insert(reviewContent);
 		
 		return "redirect:/reviewList";
