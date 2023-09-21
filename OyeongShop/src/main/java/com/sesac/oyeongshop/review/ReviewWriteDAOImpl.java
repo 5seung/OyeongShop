@@ -14,12 +14,14 @@ public class ReviewWriteDAOImpl implements ReviewWriteDAO {
 	
 	@Override
 	public int insert(String reviewContent) {
+		System.out.println("rwDao");
+		System.out.println("rwDao");
 		String sql = "insert into tbl_review(review_id, content, order_id, parent_id, upload_date,"
 				+ "review_pwd, user_id, product_id) "
 				 + 	" VALUES (3, ?, 1, 0, sysdate, '1111', 'a1', 1)";
 		
 		//update,delete,insert는 int로 나옴
-		int review = template.update(sql);
+		int review = template.update(sql, reviewContent);
 		
 		return review;
 	}

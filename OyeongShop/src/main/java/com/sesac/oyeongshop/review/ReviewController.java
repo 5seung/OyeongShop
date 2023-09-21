@@ -17,10 +17,10 @@ public class ReviewController {
 		//주소이동
 		@RequestMapping(value = "/reviewList", method = RequestMethod.GET)
 		public String reviewList() {
-			List<ReviewDTO> dto = service.selectAll();
-			for(int i=0; i<dto.size(); i++) {
-				System.out.println(dto.get(i));
-			}
+//			List<ReviewDTO> dto = service.selectAll();
+//			for(int i=0; i<dto.size(); i++) {
+//				System.out.println(dto.get(i));
+//			}
 			return "reviewList";
 		}
 }
