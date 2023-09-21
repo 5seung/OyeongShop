@@ -28,8 +28,8 @@ body {
 }
 
 #joinform {
-	max-width: 300px;
-	margin: 0 auto;
+	width: 35em;
+	margin-left: 24%
 }
 
 #joinform label {
