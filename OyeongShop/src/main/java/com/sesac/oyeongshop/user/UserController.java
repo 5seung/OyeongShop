@@ -36,7 +36,7 @@ public class UserController {
 		}
 		return view;
 	}
-	
+//	로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -44,5 +44,20 @@ public class UserController {
 			session.invalidate();
 		}
 		return "redirect:/";
+	}
+//	회원가입
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join() {
+		return "join";
+	}
+//	마이페이지
+	@RequestMapping(value = "/my-page", method = RequestMethod.GET)
+	public String myPage() {
+		return "myPage";
+	}
+//	마이페이지 :: 회원정보 보기
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {
+		return "profile";
 	}
 }
