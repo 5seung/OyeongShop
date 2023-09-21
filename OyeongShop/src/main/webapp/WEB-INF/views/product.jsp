@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <title>OyeongShop</title>
@@ -44,19 +44,15 @@ img {
 			<h2>Outer</h2>
 			<table>
 				<tr>
-					<td>
-						<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail';">
-							<img alt="" src="resources/static/img/sample1.png">
-							<p>스퀘어 디테 팬츠(2c)</p>
-							<p>₩49,400</p>
-						</div>
-					</td>
-					<td><img alt="" src="resources/static/img/sample2.png">
-						<p>워터 터틀 울 티(6c)</p>
-						<p>₩49,400</p></td>
-					<td><img alt="" src="resources/static/img/sample3.png">
-						<p>숄더 리본 블라우스</p>
-						<p>₩49,400</p></td>
+					<c:forEach items="${products}" var="product">
+						<td>
+							<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail';">
+								<img alt="" src="resources/static/img/sample1.png">
+								<p><c:out value="${product.name}"></c:out></p>
+								<p>₩ <fmt:formatNumber value="${product.price}"/> </p>
+							</div>
+						</td>
+					</c:forEach>
 				</tr>
 			</table>
 		</div>
