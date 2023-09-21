@@ -10,4 +10,6 @@ public interface ProductDao {
 
 	List<ProductDTO> selectNew();
 
+	ProductDTO selectOne(int productNo);
+
 }

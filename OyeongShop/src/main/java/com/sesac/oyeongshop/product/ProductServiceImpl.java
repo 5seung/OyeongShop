@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.sesac.oyeongshop.dto.ProductDTO;
 
-
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	@Autowired
 	ProductDao dao;
 
@@ -27,10 +26,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO select() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO select(int productNo) {
+		ProductDTO product = dao.selectOne(productNo);
+		return product;
 	}
-
 
 }

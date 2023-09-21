@@ -25,8 +25,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product-detail", method = RequestMethod.GET)
-	public String productDetail(String productNo) {
-		ProductDTO product = service.select();
+	public String productDetail(int productNo, Model model) {
+		ProductDTO product = service.select(productNo);
+		model.addAttribute("product", product);
 		return "productDetail";
 	}
 

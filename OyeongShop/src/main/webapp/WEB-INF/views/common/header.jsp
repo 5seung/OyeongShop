@@ -65,17 +65,25 @@ a {
 			<a href="http://localhost:8090/oyeongshop/">OyeongShop</a>
 		</div>
 		<div id="header-button">
-		<c:choose>
-			<c:when test="${user eq null}"> 
-				<a class="gradient-btn" href="http://localhost:8090/oyeongshop/login">login</a>
-	        </c:when>
-	        <c:otherwise>
-				<span>${user.name} 님 환영합니다.</span>
-				<a class="gradient-btn"
-					href="http://localhost:8090/oyeongshop/logout">logout</a>
-	        </c:otherwise>
-		</c:choose>
-			<a class="gradient-btn" href="#">cart</a>
+			<c:choose>
+				<c:when test="${user eq null}"> 
+					<a class="gradient-btn" href="http://localhost:8090/oyeongshop/login">login</a>
+		        </c:when>
+		        <c:otherwise>
+					<span>${user.name} 님 환영합니다.</span>
+					<a class="gradient-btn"
+						href="http://localhost:8090/oyeongshop/logout">logout</a>
+					<c:choose>
+						<c:when test="${user.authority eq '관리자'}">
+							<a class="gradient-btn"
+							href="http://localhost:8090/oyeongshop/product-regist">상품등록</a>
+						</c:when>
+						<c:otherwise>
+							<a class="gradient-btn" href="#">cart</a>
+						</c:otherwise>
+					</c:choose>
+		        </c:otherwise>
+			</c:choose>
 		</div>
 	</header>
 </body>

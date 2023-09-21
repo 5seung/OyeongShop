@@ -10,7 +10,7 @@ public interface ProductService {
 //	신제품 조회
 	public List<ProductDTO> selectNew();
 //	특정 상품조회
-	public ProductDTO select();
+	public ProductDTO select(int productNo);
 
 
 }

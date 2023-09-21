@@ -46,7 +46,7 @@ img {
 				<tr>
 					<c:forEach items="${products}" var="product">
 						<td>
-							<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail';">
+							<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail?productNo=${product.productId}';">
 								<img alt="" src="resources/static/img/sample1.png">
 								<p><c:out value="${product.name}"></c:out></p>
 								<p>₩ <fmt:formatNumber value="${product.price}"/> </p>

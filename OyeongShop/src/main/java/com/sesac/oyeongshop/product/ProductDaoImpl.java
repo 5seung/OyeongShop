@@ -40,4 +40,16 @@ public class ProductDaoImpl implements ProductDao{
 		return products;
 	}
 
+	@Override
+	public ProductDTO selectOne(int productNo) {
+		String sql = "select * from tbl_product where product_id= ?";
+		ProductDTO product = null;
+		try {
+			product = template.queryForObject(sql, new ProductRowMapper(), productNo);
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("상품조회 실패");
+		}
+		return product;
+	}
+
 }
