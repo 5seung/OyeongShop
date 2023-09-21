@@ -54,9 +54,6 @@ public class HomeController {
 	public String profile() {
 		return "profile";
 	}
-	@RequestMapping(value = "/review-list", method = RequestMethod.GET)
-	public String reviewList() {
-		return "reviewList";
-	}
+
 	
 }

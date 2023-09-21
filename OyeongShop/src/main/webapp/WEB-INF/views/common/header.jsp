@@ -2,7 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<% 
+//세션 정보확인
+System.out.println(session);
+System.out.println(session.getAttribute("user"));
+%>
 <html>
 <head>
 <title>OyeongShop</title>
@@ -14,7 +18,8 @@
 <style type="text/css">
 header {
 	padding: 2em;
-	font-family: 'Caveat', cursive;
+	font-family: 'Caveat', monospace ;
+
 }
 
 a {
@@ -61,11 +66,11 @@ a {
 		</div>
 		<div id="header-button">
 		<c:choose>
-			<c:when test="${sessionScope.user eq null}"> 
+			<c:when test="${user eq null}"> 
 				<a class="gradient-btn" href="http://localhost:8090/oyeongshop/login">login</a>
 	        </c:when>
 	        <c:otherwise>
-				<span> 님 환영합니다.</span>
+				<span>${user.name} 님 환영합니다.</span>
 				<a class="gradient-btn"
 					href="http://localhost:8090/oyeongshop/logout">logout</a>
 	        </c:otherwise>

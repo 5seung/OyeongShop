@@ -23,13 +23,12 @@ public class UserController {
 	
 	//로그인을 실행하는 메소드
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String login(String userId, String password, HttpServletRequest request) {
+	public String login(String userId, String password, HttpServletRequest request, HttpSession session) {
 		UserDTO user = null;
 		user = service.checkLogin(userId, password);
 		String view = "redirect:/";
 		if (user != null) {
-			System.out.println(user.toString());
-			HttpSession session = request.getSession();
+			System.out.println("login() :: OK :: " + user);
 			session.setAttribute("user", user);
 		} else {
 			request.setAttribute("msg", "로그인 실패");
