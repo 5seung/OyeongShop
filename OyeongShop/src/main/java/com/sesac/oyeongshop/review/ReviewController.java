@@ -2,10 +2,14 @@ package com.sesac.oyeongshop.review;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.sesac.oyeongshop.dto.ReviewDTO;
 
 @Controller
@@ -16,11 +20,16 @@ public class ReviewController {
 	
 		//주소이동
 		@RequestMapping(value = "/reviewList", method = RequestMethod.GET)
-		public String reviewList() {
-//			List<ReviewDTO> dto = service.selectAll();
-//			for(int i=0; i<dto.size(); i++) {
-//				System.out.println(dto.get(i));
-//			}
+		public String reviewList(Model model) {
+			List<ReviewDTO> reviews = service.selectAll();
+			
+			model.addAttribute("reviews", reviews);
+
+		/*
+		 * for(int i=0; i<dto.size(); i++) { //나중에 주석처리 System.out.println(dto.get(i));
+		 * }
+		 */
 			return "reviewList";
 		}
+		
 }

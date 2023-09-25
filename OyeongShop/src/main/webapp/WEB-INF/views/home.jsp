@@ -20,13 +20,15 @@
 }
 #title {
 	text-align: center;
-	margin-top: 10em;
+	margin-top: 6em;
 }
 
 table {
 	text-align: center;
 }
-
+td{
+	padding-bottom: 3em;
+}
 img {
 	width: 100%;
 	object-fit: cover;
@@ -56,11 +58,12 @@ img {
 			</table>
 			<h3 id="title">New Arrivals</h3>
 			<table>
+			<c:forEach var="idx" begin="0" end="9" step="3">
 				<tr>
-					<c:forEach items="${products}" var="product">
+					<c:forEach items="${products}" var="product" begin="${idx}" end="${idx+2}">
 						<td>
 							<div id="" onclick="location.href='http://localhost:8090/oyeongshop/product-detail?productNo=${product.productId}';">
-								<img alt="" src="resources/static/img/sample1.png">
+								<img alt="" src="upload/${product.mainImg}">
 								<p><c:out value="${product.name}"></c:out></p>
 								<p>₩ <fmt:formatNumber value="${product.price}"/></p>
 								
@@ -68,6 +71,7 @@ img {
 						</td>
 					</c:forEach>
 				</tr>
+			</c:forEach>
 			</table>
 		</div>
 	</div>

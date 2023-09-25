@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %>
 <html>
 <head>
 <title>OyeongShop</title>
@@ -49,7 +49,7 @@ select{
 		<div id="right">
 			<div id="product-regist-form">
 				<h2>상품등록</h2>
-				<form action="">
+				<form action="/oyeongshop/product-regist.do" method="post" enctype="multipart/form-data">
 					<div>
 						<span class="title">카테고리</span> <select name="category">
 										<option value="Outer">Outer</option>
@@ -59,15 +59,19 @@ select{
 					</div>
 					<br />
 					<div>
-						<span class="title">상품 이름</span> <input type="text">
+						<span class="title">상품 이름</span> <input type="text" name="name">
 					</div>
 					<br />
 					<div>
-						<span class="title">가격</span> <input type="text" name="price">
+						<span class="title">매입가</span> <input type="text" name="productionCost">
 					</div>
 					<br />
 					<div>
-						<span class="title">상세내용</span> <input type="text" name="content">
+						<span class="title">판매가</span> <input type="text" name="price">
+					</div>
+					<br />
+					<div>
+						<span class="title">상세내용</span> <input type="text" name="productContent">
 					</div>
 					<br />
 					<div>
@@ -83,14 +87,14 @@ select{
 					</div>
 					<br />
 					<div>
-						<span class="title">상품 이미지(메인)</span> <input type="file">
+						<span class="title">상품 이미지(메인)</span> <input type="file" name="mainImgFile">
 					</div>
 					<br />
 					<div>
 						<span class="title">상품 이미지(상세)</span> <input type="file">
 					</div>
 					<br />
-					<button type="button">등록하기</button>
+					<button type="submit">등록하기</button>
 				</form>
 			</div>
 		</div>

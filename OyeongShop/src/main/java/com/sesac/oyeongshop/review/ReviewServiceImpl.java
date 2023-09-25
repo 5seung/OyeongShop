@@ -22,7 +22,13 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<ReviewDTO> selectAll() {
 		List<ReviewDTO> result = dao.selectAll();
-		System.out.println(result);
+		System.out.println("reviewserviceImpl::"+result);
+		return result;
+	}
+	@Override
+	public List<ReviewDTO> selectAll(int productNo) {
+		List<ReviewDTO> result = dao.selectAll(productNo);
+		System.out.println("reviewserviceImpl::"+result);
 		return result;
 	}
 }

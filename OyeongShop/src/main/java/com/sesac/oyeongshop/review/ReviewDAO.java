@@ -5,5 +5,6 @@ import com.sesac.oyeongshop.dto.ReviewDTO;
 
 public interface ReviewDAO {
 	public List<ReviewDTO> selectAll();
+	public List<ReviewDTO> selectAll(int productNo);
 	
 }

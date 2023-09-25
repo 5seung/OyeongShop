@@ -74,11 +74,12 @@ img {
 		</div>
 		<div id="right">
 			<form action="/oyeongshop/order">
+			<input type="hidden" value="${sessionScope.user.userId}" name="userId">
 				<table>
 					<tr>
 						<td>
 							<div id="product_img">
-								<img alt="" src="resources/static/img/sample1.png">
+								<img alt="" src="upload/${product.mainImg}">
 							</div>
 						</td>
 						<td>
@@ -89,37 +90,72 @@ img {
 								<div>
 									<span>색상 </span> <select name="color">
 										<option value="none">=== 선택 ===</option>
-										<option value="#">크림</option>
-										<option value="#">블랙</option>
+										<option value="cream">크림</option>
+										<option value="black">블랙</option>
 									</select>
 								</div>
 								<div>
 									<span>사이즈 </span> <select name="size">
 										<option value="none">=== 선택 ===</option>
-										<option value="#">s</option>
-										<option value="#">L</option>
+										<option value="small">s</option>
+										<option value="large">L</option>
 									</select>
 								</div>
 								<div>
-									<span>수량</span> <span id='result'>0</span> <input
+									<span>수량</span> <input name="quantity" id='result' value="1" readonly> <input
 										type='button' onclick='count("plus")' value='+' /> <input
 										type='button' onclick='count("minus")' value='-' />
 								</div>
 								<p>Total</p>
-								<button type="submit" class="my-btn">Buy Now</button>
-								<!-- 관리자 전용 버튼 -->
-								<c:if test="">
-								<div>
-									<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/#';">수정하기</button>
-									<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/#';">삭제하기</button>
-								</div>
-								</c:if>
+								<c:choose>
+									<c:when test="${user.authority eq '관리자'}">
+										<!-- 관리자 전용 버튼 -->
+										<div>
+											<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/product-regist';">수정하기</button>
+											<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/product-delete.do?productNo=${product.productId}';">삭제하기</button>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<button type="submit" class="my-btn">Buy Now</button>
+									</c:otherwise>
+								</c:choose>
 								<p>review(0)</p>
 							</div>
 						</td>
 					</tr>
 				</table>
 			</form>
+			<!-- 리뷰리스트 -->
+			<div id="reviewList">
+				<h3>Review</h3>
+				<table border="1">
+					<tr>
+						<th>no</th>
+						<th>content</th>
+						<th>writer</th>
+						<th>date</th>
+						<th>modify/delete</th>
+					</tr>
+					
+					<c:forEach var="review" items="${reviews}" varStatus="status">
+					<tr>
+						<td>${status.count}</td>
+						<td>${review.content}</td>
+						<td>${review.userId}</td>
+						<td>${review.uploadDate}</td>
+						<td>
+							<c:if test="${sessionScope.user.userId eq review.userId}">
+								<button id="modifyBtn" type="button" onclick="location.href = 'pwdCheck?reviewId=${review.reviewId}'">수정</button>
+								<button id="deleteBtn" type="button" onclick="location.href = 'pwdCheckDel?reviewId=${review.reviewId}'">삭제</button>
+							</c:if>
+						</td>
+					</tr>
+					</c:forEach>
+
+				</table>
+				<button type="button"
+					onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="./common/footer.jsp"></jsp:include>

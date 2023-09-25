@@ -3,7 +3,7 @@ package com.sesac.oyeongshop.dto;
 import java.util.Date;
 
 public class ProductDTO {
-	private int productId;	//PK
+	private int productId; // PK
 	private String name;
 	private int productionCost;
 	private int price;
@@ -11,13 +11,14 @@ public class ProductDTO {
 	private String category;
 	private String salesStatus;
 	private String productContent;
-	
+	private String mainImg;
+
 	public ProductDTO() {
 		super();
 	}
 
 	public ProductDTO(int productId, String name, int productionCost, int price, Date uploadDate, String category,
-			String salesStatus, String productContent) {
+			String salesStatus, String productContent, String mainImg) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -27,6 +28,7 @@ public class ProductDTO {
 		this.category = category;
 		this.salesStatus = salesStatus;
 		this.productContent = productContent;
+		this.mainImg = mainImg;
 	}
 
 	public int getProductId() {
@@ -93,11 +95,19 @@ public class ProductDTO {
 		this.productContent = productContent;
 	}
 
+	public String getMainImg() {
+		return mainImg;
+	}
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", name=" + name + ", productionCost=" + productionCost
 				+ ", price=" + price + ", uploadDate=" + uploadDate + ", category=" + category + ", salesStatus="
-				+ salesStatus + ", productContent=" + productContent + "]";
+				+ salesStatus + ", productContent=" + productContent + ", productImgs=" + mainImg + "]";
 	}
-	
+
 }
