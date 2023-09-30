@@ -3,33 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<title>리뷰</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<title>리뷰</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-}
-
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em;
-}
-
-#left {
-	width: 25%;
-}
-
-#right {
-	width: 100%;
-	padding: 0 3em;
-}
-
 #reviewList {
 	margin-left: 25%;
 }

@@ -4,29 +4,9 @@
 <html>
 <head>
 <title>OyeongShop</title>
+<link href="resources/static/css/common.css" rel="stylesheet"
+	type="text/css" />
 <style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-	/*width: 100%; height: 100%; */
-}
-
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em; 
-}
-#left{
-	width: 25%;
-}
-#right{
-	width: 100%;
-	padding: 0 3em;
-}
-
 #loginform {
 	padding-left: 25%;
 	width: 22em;
@@ -72,13 +52,12 @@ body {
 		</div>
 		<div id="right">
 			<!-- Right Content - 리뷰비밀번호 확인 폼 -->
-			<form id="checkform" action="/oyeongshop/reviewDel.do"  method="GET">
+			<form id="checkform" action="/oyeongshop/reviewDel.do" method="GET">
 				<h3>리뷰 삭제 페이지</h3>
-				<input type="hidden" name="reviewId" value="${reviewId}">
-				<label for="reviewPwd">비밀번호</label>
-				<input type="text" id="reviewPwd" name="reviewPwd" required>
-				<input type="submit" value="삭제">
-				<br> <br> 
+				<input type="hidden" name="reviewId" value="${reviewId}"> <label
+					for="reviewPwd">비밀번호</label> <input type="text" id="reviewPwd"
+					name="reviewPwd" required> <input type="submit" value="삭제">
+				<br> <br>
 			</form>
 		</div>
 	</div>

@@ -1,6 +1,7 @@
 package com.sesac.oyeongshop.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProductDTO {
 	private int productId; // PK
@@ -12,6 +13,8 @@ public class ProductDTO {
 	private String salesStatus;
 	private String productContent;
 	private String mainImg;
+	private List<ProductImgDTO> subImgs;
+	private List<ProductDetailDTO> detail;
 
 	public ProductDTO() {
 		super();
@@ -101,6 +104,22 @@ public class ProductDTO {
 
 	public void setMainImg(String mainImg) {
 		this.mainImg = mainImg;
+	}
+
+	public List<ProductImgDTO> getSubImgs() {
+		return subImgs;
+	}
+
+	public void setSubImgs(List<ProductImgDTO> subImgs) {
+		this.subImgs = subImgs;
+	}
+
+	public List<ProductDetailDTO> getDetail() {
+		return detail;
+	}
+
+	public void setDetail(List<ProductDetailDTO> detail) {
+		this.detail = detail;
 	}
 
 	@Override

@@ -5,19 +5,8 @@
 <html>
 <head>
 <title>OyeongShop</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-}
-#left{
-	width: 25%;
-}
-#right{
-	padding: 0 3em;
-}
 #title {
 	text-align: center;
 	margin-top: 6em;
@@ -32,6 +21,11 @@ td{
 img {
 	width: 100%;
 	object-fit: cover;
+}
+#product_img {
+	width: 22em;
+	height: 28em;
+	padding: 1em
 }
 </style>
 </head>
@@ -63,7 +57,7 @@ img {
 					<c:forEach items="${products}" var="product" begin="${idx}" end="${idx+2}">
 						<td>
 							<div id="" onclick="location.href='http://localhost:8090/oyeongshop/product-detail?productNo=${product.productId}';">
-								<img alt="" src="upload/${product.mainImg}">
+								<img id="product_img" alt="" src="upload/${product.mainImg}">
 								<p><c:out value="${product.name}"></c:out></p>
 								<p>₩ <fmt:formatNumber value="${product.price}"/></p>
 								

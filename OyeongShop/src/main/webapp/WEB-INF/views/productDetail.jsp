@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>OyeongShop</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	function count(type) {
 		// 결과를 표시할 element
@@ -25,25 +26,12 @@
 	}
 </script>
 <style type="text/css">
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em; 
-}
-#left{
-	width: 25%;
-}
-#right{
-	width: 100%;
-	padding: 0 3em;
-}
 div{
 	padding: 0.5em 0;
 }
 #product_img {
 	width: 28em;
+	height: 32em;
 	padding-right: 2em;
 }
 
@@ -51,17 +39,33 @@ img {
 	width: 100%;
 	object-fit: cover;
 }
+.sub_img{
+	width: 40em;
+	padding: 1em;
+}
+.sub_img_cover{
+	text-align: center;
+}
 
 #product_describe {
 	padding: 1em;
 	max-width: 30em;
 }
+.sub_title{
+display:inline-block;
+	width: 5em;
+}
 .my-btn {
-	width: 49%;
+	width: 20em;
 	color: black;
 	border: none;
 	padding: 10px;
 	cursor: pointer;
+}
+#review_table{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 2em;
 }
 </style>
 </head>
@@ -86,23 +90,25 @@ img {
 							<div id="product_describe">
 								<h3><c:out value="${product.name}"></c:out></h3>
 								<div><c:out value="${product.productContent}"></c:out></div>
-								<p><span>가격 ₩ </span><fmt:formatNumber value="${product.price}"/> </p>
+								<p><span class="sub_title">가격</span> ₩ <fmt:formatNumber value="${product.price}"/> </p>
 								<div>
-									<span>색상 </span> <select name="color">
+									<span class="sub_title">색상 </span> <select name="color">
 										<option value="none">=== 선택 ===</option>
-										<option value="cream">크림</option>
-										<option value="black">블랙</option>
+										<c:forEach var="detail" items="${product.detail}">
+										<option value="${detail.color}">${detail.color}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div>
-									<span>사이즈 </span> <select name="size">
+									<span class="sub_title">사이즈 </span> <select name="size">
 										<option value="none">=== 선택 ===</option>
-										<option value="small">s</option>
-										<option value="large">L</option>
+										<c:forEach var="detail" items="${product.detail}">
+										<option value="${detail.sizeOption}">${detail.sizeOption}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div>
-									<span>수량</span> <input name="quantity" id='result' value="1" readonly> <input
+									<span class="sub_title">수량</span> <input name="quantity" id='result' value="1" readonly> <input
 										type='button' onclick='count("plus")' value='+' /> <input
 										type='button' onclick='count("minus")' value='-' />
 								</div>
@@ -123,12 +129,30 @@ img {
 							</div>
 						</td>
 					</tr>
+					<c:if test="${not empty product.subImgs}">
+					<tr>
+						<td colspan="2">
+						<br/><br/><br/>
+						 	<h3>상세 이미지</h3>
+						</td>
+					</tr>
+					</c:if>
+					<c:forEach var="subImg" items="${product.subImgs}">
+					<tr>
+						<td colspan="2">
+						<div class="sub_img_cover">
+							<img alt="이미지를 불러올 수 없습니다." src="upload/${subImg.storedFileName}" class="sub_img">
+						</div>
+						</td>
+					</tr>
+					</c:forEach>
 				</table>
 			</form>
 			<!-- 리뷰리스트 -->
+			<br/><br/><br/>			
 			<div id="reviewList">
 				<h3>Review</h3>
-				<table border="1">
+				<table id="review_table">
 					<tr>
 						<th>no</th>
 						<th>content</th>
@@ -144,16 +168,21 @@ img {
 						<td>${review.userId}</td>
 						<td>${review.uploadDate}</td>
 						<td>
-							<c:if test="${sessionScope.user.userId eq review.userId}">
+						<c:choose>
+							<c:when test="${sessionScope.user.userId eq review.userId}">
 								<button id="modifyBtn" type="button" onclick="location.href = 'pwdCheck?reviewId=${review.reviewId}'">수정</button>
 								<button id="deleteBtn" type="button" onclick="location.href = 'pwdCheckDel?reviewId=${review.reviewId}'">삭제</button>
-							</c:if>
+							</c:when>
+							<c:otherwise>
+								<p>권한이 없습니다.</p>
+							</c:otherwise>
+						</c:choose>
 						</td>
 					</tr>
 					</c:forEach>
 
 				</table>
-				<button type="button"
+				<button type="button" class="my-btn"
 					onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
 			</div>
 		</div>

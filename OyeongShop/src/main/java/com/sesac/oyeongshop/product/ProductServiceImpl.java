@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sesac.oyeongshop.dto.ProductDTO;
+import com.sesac.oyeongshop.dto.ProductDetailDTO;
+import com.sesac.oyeongshop.dto.ProductImgDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -28,6 +30,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO select(int productNo) {
 		ProductDTO product = dao.selectOne(productNo);
+		List<ProductImgDTO> productImgs = dao.selectImgs(productNo);
+		List<ProductDetailDTO> detail = dao.selectDetail(productNo);
+		product.setSubImgs(productImgs);
+		product.setDetail(detail);
 		return product;
 	}
 
@@ -41,11 +47,17 @@ public class ProductServiceImpl implements ProductService {
 		int result = dao.insert(key, storedFileName);
 		return result;
 	}
+	@Override
+	public int insert(int key, ProductDetailDTO productDetail) {
+		int result = dao.insert(key, productDetail);
+		return result;
+	}
 
 	@Override
 	public int delete(int productNo) {
 		int result = dao.delete(productNo);
 		return result;
 	}
+
 
 }

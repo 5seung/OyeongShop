@@ -4,29 +4,8 @@
 <html>
 <head>
 <title>마이페이지-내정보</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-}
-
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-}
-
-#left {
-	width: 25%;
-}
-
-#right {
-	width: 100%;
-	padding: 0 3em;
-}
-
 #joinform {
 	width: 35em;
 	margin-left: 24%

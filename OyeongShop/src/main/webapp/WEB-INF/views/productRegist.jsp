@@ -1,44 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %>
+<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion()%>
 <html>
 <head>
 <title>OyeongShop</title>
-<style type="text/css">
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-}
-
-#left {
-	width: 25%;
-}
-
-#right {
-	width: 100%;
-	padding: 0 3em;
-}
-
-#product-regist-form {
-	width: 35em;
-	margin-left: 24%; 
-}
-
-.title {
-	display: inline-block;
-	width: 10em;
-}
-
-input {
-	width: 15em;
-}
-select{
-	width: 15em;
-}
-</style>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
+<link href="resources/static/css/productRegist.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="resources/static/js/productRegist.js"></script>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>
@@ -49,13 +18,14 @@ select{
 		<div id="right">
 			<div id="product-regist-form">
 				<h2>상품등록</h2>
-				<form action="/oyeongshop/product-regist.do" method="post" enctype="multipart/form-data">
+				<form action="/oyeongshop/product-regist.do" method="post"
+					enctype="multipart/form-data">
 					<div>
 						<span class="title">카테고리</span> <select name="category">
-										<option value="Outer">Outer</option>
-										<option value="Top">Top</option>
-										<option value="Bottom">Bottom</option>
-									</select>
+							<option value="Outer">Outer</option>
+							<option value="Top">Top</option>
+							<option value="Bottom">Bottom</option>
+						</select>
 					</div>
 					<br />
 					<div>
@@ -63,7 +33,8 @@ select{
 					</div>
 					<br />
 					<div>
-						<span class="title">매입가</span> <input type="text" name="productionCost">
+						<span class="title">매입가</span> <input type="text"
+							name="productionCost">
 					</div>
 					<br />
 					<div>
@@ -71,27 +42,40 @@ select{
 					</div>
 					<br />
 					<div>
-						<span class="title">상세내용</span> <input type="text" name="productContent">
+						<span class="title">상세내용</span> <input type="text"
+							name="productContent">
+					</div>
+					<br />
+					<fieldset>
+						<div>
+							<span class="title">색상</span> <input type="text" name="color">
+						</div>
+						<br />
+						<div>
+							<span class="title">사이즈</span> <select name="sizeOption">
+								<option value="free">free</option>
+								<option value="small">S</option>
+								<option value="medium">M</option>
+								<option value="large">L</option>
+							</select>
+						</div>
+						<br />
+						<div>
+							<span class="title">재고</span> <input type="text" name="stock">
+						</div>
+					</fieldset>
+					<div>
+						<span class="title">상품 이미지(메인)</span> <input type="file"  accept="image/*"
+							name="mainImgFile" onchange="setThumbnail(event);">
+						<div id="image_container"></div>
+
 					</div>
 					<br />
 					<div>
-						<span class="title">색상</span> <input type="text">
-					</div>
-					<br />
-					<div>
-						<span class="title">사이즈</span> <input type="text">
-					</div>
-					<br />
-					<div>
-						<span class="title">재고</span> <input type="text">
-					</div>
-					<br />
-					<div>
-						<span class="title">상품 이미지(메인)</span> <input type="file" name="mainImgFile">
-					</div>
-					<br />
-					<div>
-						<span class="title">상품 이미지(상세)</span> <input type="file">
+						<span class="title">상품 이미지(상세)</span> <input type="file"  accept="image/*"
+							name="subImgFile" onchange="setThumbnail2(event);" multiple/>
+							
+						<div id="image_container2"></div>
 					</div>
 					<br />
 					<button type="submit">등록하기</button>

@@ -3,32 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<title>리뷰 수정 페이지</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<title>리뷰 수정 페이지</title>
+	<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-}
-
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-}
-
-#left {
-	width: 25%;
-}
-
-#right {
-	width: 100%;
-	padding: 0 3em;
-}
-
 #reviewWriteform {
 	padding-left: 25%;
 	width: 50%
@@ -55,19 +34,6 @@ body {
 	cursor: pointer;
 	margin-bottom: 10px;
 }
-
-/* #reviewList {
-
-	max-width: 100%;
-	margin: 0 auto;
-} */
-
-/*  {
-	color: black;
-	border: none;
-	padding: 10px;
-	cursor: pointer;
-} */
 </style>
 </head>
 <body>

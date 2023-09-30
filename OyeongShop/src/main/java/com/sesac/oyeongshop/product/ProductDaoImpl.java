@@ -14,7 +14,9 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.sesac.oyeongshop.dto.ProductDTO;
+import com.sesac.oyeongshop.dto.ProductDetailDTO;
 import com.sesac.oyeongshop.dto.ProductImgDTO;
+import com.sesac.oyeongshop.rowmapper.ProductDetailRowMapper;
 import com.sesac.oyeongshop.rowmapper.ProductImgRowMapper;
 import com.sesac.oyeongshop.rowmapper.ProductRowMapper;
 
@@ -68,11 +70,28 @@ public class ProductDaoImpl implements ProductDao {
 		ProductDTO product = null;
 		try {
 			product = template.queryForObject(sql, new ProductRowMapper(), productNo);
-//			ProductImgDTO productImg = template.queryForObject(sql, new ProductImgRowMapper(), productNo);
 		} catch (EmptyResultDataAccessException e) {
 			System.out.println("상품조회 실패");
 		}
 		return product;
+	}
+
+	@Override
+	public List<ProductImgDTO> selectImgs(int productNo) {
+		String sql = "select * from tbl_productImg where product_id= ?";
+		try {
+			List<ProductImgDTO> productImg = template.query(sql, new ProductImgRowMapper(), productNo);
+			return productImg;
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("상품조회 실패");
+			return null;
+		}
+	}
+	@Override
+	public List<ProductDetailDTO> selectDetail(int productNo) {
+		String sql = "select * from tbl_product_detail where product_id= ?";
+		List<ProductDetailDTO> productDetail = template.query(sql, new ProductDetailRowMapper(), productNo);
+		return productDetail;
 	}
 
 	@Override
@@ -108,16 +127,32 @@ public class ProductDaoImpl implements ProductDao {
 			return 0;
 		}
 	}
+
 //	상품상세 이미지 추가
 	@Override
 	public int insert(int key, String storedFileName) {
-		String sql = "insert into tbl_ProductImg "
+		String sql = "insert into tbl_productImg "
 				+ "values (NVL((SELECT MAX(product_img_id) + 1 FROM tbl_ProductImg),1), ?, ?)";
 		int result = 0;
 		try {
 			result = template.update(sql, storedFileName, key);
 		} catch (EmptyResultDataAccessException e) {
 			System.out.println("상품이미지 저장 실패");
+		}
+		return result;
+	}
+
+//	상품 상세정보 추가
+	@Override
+	public int insert(int key, ProductDetailDTO productDetail) {
+		String sql = "insert into tbl_product_detail "
+				+ "values (NVL((SELECT MAX(product_detail_id) + 1 FROM tbl_product_detail),1), ?, ?, ?, ?)";
+		int result = 0;
+		try {
+			result = template.update(sql, productDetail.getColor(), productDetail.getSizeOption(),
+					productDetail.getStock(), key);
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("상품상세 저장 실패");
 		}
 		return result;
 	}

@@ -5,11 +5,7 @@
 <html>
 <head>
 <title>OyeongShop</title>
-<style type="text/css">
-#right{
-	text-align: center;
-}
-</style>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>

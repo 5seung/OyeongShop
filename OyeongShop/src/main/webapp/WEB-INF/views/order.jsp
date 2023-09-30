@@ -5,38 +5,7 @@
 <html>
 <head>
 <title>OyeongShop</title>
-<style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-}
-
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em;
-}
-
-#left {
-	width: 25%;
-}
-
-#right {
-	width: 100%;
-	padding: 0 3em;
-}
-
-.my-btn {
-	width: 49%;
-	color: black;
-	border: none;
-	padding: 10px;
-	cursor: pointer;
-}
-</style>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>
@@ -101,7 +70,7 @@ body {
 						
 					</tr>
 				</table>
-			<button type="submit">결제하기</button>
+			<button type="submit" class="my-btn">결제하기</button>
 			</form>
 		</div>
 	</div>
