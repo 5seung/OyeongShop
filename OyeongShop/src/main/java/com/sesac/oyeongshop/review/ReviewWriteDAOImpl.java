@@ -11,18 +11,18 @@ import com.sesac.oyeongshop.rowmapper.ReviewRowMapper;
 
 @Repository
 public class ReviewWriteDAOImpl implements ReviewWriteDAO {
-	
+
 	@Autowired
 	private JdbcTemplate template;
-	
+
 	@Override
 	public int insert(String reviewContent, String reviewPwd, String userId, int productId) {
 		/* System.out.println("rwDao"); */
 
 		String sql = "INSERT INTO tbl_review "
 				+ "VALUES (NVL((SELECT MAX(review_id) + 1 FROM tbl_review),1), ?, 1, 0, SYSDATE, ?, ?, ?)";
-		
-		//update,delete,insert는 int로 나옴
+
+		// update,delete,insert는 int로 나옴
 		int review = template.update(sql, reviewContent, reviewPwd, userId, productId);
 		return review;
 	}
@@ -37,25 +37,24 @@ public class ReviewWriteDAOImpl implements ReviewWriteDAO {
 	@Override
 	public ReviewDTO getReviewContent(int reviewId) {
 		String sql = "select * from tbl_review where review_id=?";
-		ReviewDTO review = template.queryForObject(sql,new ReviewRowMapper(),reviewId);
-		
-		System.out.println("리뷰컨텐츠"+review.getContent());
+		ReviewDTO review = template.queryForObject(sql, new ReviewRowMapper(), reviewId);
+
+		System.out.println("리뷰컨텐츠" + review.getContent());
 		return review;
 	}
-	
+
 	@Override
 	public int reviewUpdate(String content, int reviewId) {
 		String sql = "UPDATE tbl_review SET content = ? WHERE review_id = ?";
 
 		int review = template.update(sql, content, reviewId);
 
-				
-/*		int review = template.update(sql, content, reviewId);*/
+		/* int review = template.update(sql, content, reviewId); */
 		/*
 		 * ReviewDTO review = template.queryForObject(sql,new
 		 * ReviewRowMapper(),reviewId);
 		 */
-		System.out.println("DAO리뷰업데이트성공하면1::"+review);
+		System.out.println("DAO리뷰업데이트성공하면1::" + review);
 		return review;
 	}
 
@@ -63,10 +62,8 @@ public class ReviewWriteDAOImpl implements ReviewWriteDAO {
 	public int reviewDel(int reviewId) {
 		String sql = "DELETE tbl_review WHERE review_id=?";
 		int review = template.update(sql, reviewId);
-		System.out.println("DAO리뷰삭제성공하면1::"+review);
+		System.out.println("DAO리뷰삭제성공하면1::" + review);
 		return review;
 	}
-	
-	
-	
+
 }

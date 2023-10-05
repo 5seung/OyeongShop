@@ -5,75 +5,174 @@
 <html>
 <head>
 <title>OyeongShop</title>
-<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
+<link href="resources/static/css/common.css" rel="stylesheet"
+	type="text/css" />
+<style type="text/css">
+table{
+	margin: 3em 0;
+	width: 90%;
+}
+#order_info{
+	text-align: center;
+}
+tr {
+	padding: 1em 0;
+}
+
+img {
+	width: 8em;
+}
+.non {
+border: 0;
+text-align: center;
+}
+input {
+	width: 85%;
+	height: 2em;
+	font-size: large;
+}
+.my-btn{
+	margin-right: 10%;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>
 	<div id="container">
+		<!-- Left Content -->
 		<div id="left">
-			<!-- Left Content -->
 			<jsp:include page="./common/sideNav.jsp"></jsp:include>
 		</div>
+		<!-- right :: 주문페이지 -->
 		<div id="right">
-			<!-- right :: 주문페이지 -->
 			<h2>Order</h2>
-			<form action="/oyeongshop/order-success">
+			<form action="/oyeongshop/orderSuccess.do" method="GET">
+				<input type="hidden" name="productId" value="${productId}">
 				<h3>[주문정보]</h3>
-				<table>
+				<table id="order_info">
 					<tr>
 						<td>이미지</td>
 						<td>상품명</td>
 						<td>판매가</td>
 						<td>수량</td>
-						<td>옵션(색상/사이즈)</td>
+						<td>색상</td>
+						<td>사이즈</td>
 						<td>합계</td>
 					</tr>
 					<tr>
-						<td><img alt="이미지" src=""></td>
-						<td>스퀘어 디테 팬츠(2c)</td>
-						<td>₩49,400</td>
-						<td>1</td>
-						<td>베이지/s</td>
-						<td>₩49,400</td>
+						<td><img alt="이미지" src="upload/${mainImg}"></td>
+						<td>${productName}</td>
+						<td><input type="text" name="price" value="${price}" readonly="readonly" class="non"></td>
+						<td><input type="text" name="orderQuantity" value="${quantity}" readonly="readonly" class="non"></td>
+						<td><input type="text" name="orderColor" value="${color}" readonly="readonly" class="non"></td>
+						<td><input type="text" name="orderSize" value="${size}" readonly="readonly" class="non"></td>
+						<td>${price*quantity}</td>
 					</tr>
 				</table>
-				<h3>[배송정보]</</h3>
+				<h3>[배송정보]</h3>
 				<table>
 					<tr>
-						<td>배송지 선택</td>
-						<td></td>
-					
+						<td>받으시는 분</td>
+						<td><input type="text" name="receiveName"></td>
 					</tr>
 					<tr>
-						<td>받으시는 분</td>
-						<td></td>
-						
+						<td>휴대폰</td>
+						<td><input type="tel" name="receivePhone"></td>
 					</tr>
+					<tr>
+						<td>우편번호</td>
+						<td>
+							<input type="text" name="zonecode" id="sample6_postcode"
+								placeholder="우편번호" readonly>
+						</td>
+						<td>
+								<input type="button" onclick="sample6_execDaumPostcode()"
+								value="우편번호 찾기" class="my-btn">
+						</td>
+					</tr>
+
 					<tr>
 						<td>주소</td>
-						<td></td>
-						
+						<td colspan="2"><input type="text" name="address" id="sample6_address"
+							placeholder="주소"></td>
+					</tr>
+
+					<tr>
+						<td>참고주소</td>
+						<td colspan="2"><input type="text" name="addressExtra"
+							id="sample6_extraAddress" placeholder="참고주소" readonly></td>
 					</tr>
 					<tr>
-						<td>휴대전화</td>
-						<td></td>
-						
+						<td>상세주소</td>
+						<td colspan="2"><input type="text" name="addressDetail"
+							id="sample6_detailAddress" placeholder="상세주소"></td>
 					</tr>
-					<tr>
-						<td>이메일</td>
-						<td></td>
-						
-					</tr>
-					<tr>
-						<td>배송메세지</td>
-						<td></td>
-						
-					</tr>
+
+
 				</table>
-			<button type="submit" class="my-btn">결제하기</button>
+				<button type="submit" class="my-btn" style="float: right;">결제하기</button>
 			</form>
 		</div>
 	</div>
+
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function sample6_execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
+
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+								// 조합된 참고항목을 해당 필드에 넣는다.
+								document.getElementById("sample6_extraAddress").value = extraAddr;
+
+							} else {
+								document.getElementById("sample6_extraAddress").value = '';
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('sample6_postcode').value = data.zonecode;
+							document.getElementById("sample6_address").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("sample6_detailAddress")
+									.focus();
+						}
+					}).open();
+		}
+	</script>
+
 	<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>
 </html>

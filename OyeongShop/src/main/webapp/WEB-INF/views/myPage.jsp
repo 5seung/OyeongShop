@@ -27,19 +27,25 @@ h5 {
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>
 	<div id="container">
+	<!-- Left Content -->
 		<div id="left">
-			<!-- Left Content -->
 			<jsp:include page="./common/sideNav.jsp"></jsp:include>
 		</div>
+	<!-- Right Content :: MyPage 폼 -->
 		<div id="right">
-			<!-- Right Content - MyPage 폼 -->
 			<div id="mypage">
 				<h2>MY PAGE</h2>
+				<!-- 주문내역 조회 -->
 				<button type="button"
-					onclick="location.href='http://localhost:8090/oyeongshop/order-list';"
+					onclick="location.href='http://localhost:8090/oyeongshop/orderList.do';"
 					id="btnorderlist" name="orderlist">ORDER 주문내역 조회</button>
 				<h5>고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.</h5>
-				<!-- 이거 누르면 비밀번호 확인 창 뜨게! -->
+				<!-- 작성한 리뷰 리스트 조회 -->
+				<button type="button"
+					onclick="location.href='http://localhost:8090/oyeongshop/my-review';"
+					id="btnorderlist" name="orderlist">REVIEW 작성리뷰 조회</button>
+				<h5>고객님께서 작성하신 상품의 후기를 확인하실 수 있습니다.</h5>
+				<!-- 회원 정보 확인 :: 이거 누르면 비밀번호 확인 창 뜨게! -->
 				<button type="button" onclick="location.href='http://localhost:8090/oyeongshop/profile';" id="btnprofile"
 					name="profile">PROFILE 회원 정보</button>
 				<h5>

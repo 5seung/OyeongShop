@@ -13,7 +13,7 @@ import com.sesac.oyeongshop.product.ProductService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	ProductService service;
 
@@ -24,7 +24,4 @@ public class HomeController {
 		return "home";
 	}
 
-
-
-	
 }

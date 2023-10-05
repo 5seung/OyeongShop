@@ -79,6 +79,10 @@ display:inline-block;
 		<div id="right">
 			<form action="/oyeongshop/order">
 			<input type="hidden" value="${sessionScope.user.userId}" name="userId">
+			<input type="hidden" value="${product.mainImg}" name="mainImg">
+			<input type="hidden" value="${product.name}" name="productName">
+			<input type="hidden" value="${product.productId}" name="productId">
+			<input type="hidden" value="${product.price}" name="price">
 				<table>
 					<tr>
 						<td>
@@ -182,8 +186,10 @@ display:inline-block;
 					</c:forEach>
 
 				</table>
-				<button type="button" class="my-btn"
-					onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
+				<c:if test="${writeCheck }">
+					<button type="button" class="my-btn"
+						onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
+				</c:if>
 			</div>
 		</div>
 	</div>

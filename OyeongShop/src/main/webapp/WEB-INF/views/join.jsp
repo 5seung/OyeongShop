@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>웹 페이지</title>
+<title>OyeongShop</title>
 <link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style>
 body {

@@ -1,0 +1,48 @@
+.ToggleBtn{
+		cursor: pointer; /* 클릭 커서로 변경 */
+		font-size: large;
+    	color: #011171;
+    	font-weight: bolder;
+    	margin-left: 15px;
+    	margin-top: 25px;
+	}
+	.ToggleBtn:hover{
+		cursor: pointer;
+		color: black;
+		transition: 1s;
+	}
+	.Toggle{
+		display: none;
+	}
+	.Toggle.active{
+		display: flex;
+		animation: fadeIn 0.5s; /*@keyframes명: fadeIn */
+	}
+	@keyframes fadeIn { /* 페이드인 효과로 리스트를 보여줌.*/
+  		from {
+    		opacity: 0;
+  		}
+  		to {
+    		opacity: 1;
+  		}
+	}
+	.list{
+		text-decoration: none;
+		font-size: medium;
+		font-weight: bold;
+    	color: #011171;
+	}
+	.list:hover{
+		color: black;
+	}
+	ul{
+		list-style: none;
+	}
+	li{
+		margin-top: 20px;
+		width: max-content;
+	}
+	li:hover{
+		list-style: square;
+	}
+	

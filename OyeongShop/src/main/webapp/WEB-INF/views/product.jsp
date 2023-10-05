@@ -33,7 +33,7 @@ td{
 				<tr>
 					<c:forEach items="${products}" var="product" begin="${idx}" end="${idx+2}">
 						<td>
-							<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail?productNo=${product.productId}';">
+							<div onclick="location.href='/oyeongshop/product-detail?productNo=${product.productId}';">
 								<div id="img_cover">
 									<img id="product_img" alt="" src="upload/${product.mainImg}">
 								</div>

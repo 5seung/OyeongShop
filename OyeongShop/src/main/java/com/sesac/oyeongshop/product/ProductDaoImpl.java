@@ -93,7 +93,7 @@ public class ProductDaoImpl implements ProductDao {
 		List<ProductDetailDTO> productDetail = template.query(sql, new ProductDetailRowMapper(), productNo);
 		return productDetail;
 	}
-
+	//상품 정보 저장
 	@Override
 	public int insert(ProductDTO productInfo) {
 		/* id, 상품명, 원가, 판매가, 등록일, 카테고리, 판매여부 */

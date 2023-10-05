@@ -32,25 +32,17 @@
 	cursor: pointer;
 	margin-bottom: 10px;
 }
-
-.my-btn {
-	width: 49%;
-	color: black;
-	border: none;
-	padding: 10px;
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"></jsp:include>
 	<div id="container">
+	<!-- Left Content -->
 		<div id="left">
-			<!-- Left Content -->
 			<jsp:include page="./common/sideNav.jsp"></jsp:include>
 		</div>
+	<!-- Right Content :: 로그인 폼 -->
 		<div id="right">
-			<!-- Right Content - 로그인 폼 -->
 			<form id="loginform" action="/oyeongshop/login.do"  method="post">
 				<label for="loginid">아이디</label> <input type="text" id="loginid" name="userId" required>
 				<br> <br> 
