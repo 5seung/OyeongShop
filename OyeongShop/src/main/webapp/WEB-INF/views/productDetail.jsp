@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <title>OyeongShop</title>
@@ -56,7 +57,7 @@ display:inline-block;
 	width: 5em;
 }
 .my-btn {
-	width: 20em;
+	width: 45%;
 	color: black;
 	border: none;
 	padding: 10px;
@@ -106,9 +107,16 @@ display:inline-block;
 								<div>
 									<span class="sub_title">사이즈 </span> <select name="size">
 										<option value="none">=== 선택 ===</option>
-										<c:forEach var="detail" items="${product.detail}">
-										<option value="${detail.sizeOption}">${detail.sizeOption}</option>
-										</c:forEach>
+										<c:choose>
+											<c:when test="${product.detail[0].sizeOption eq 'free'}">
+											<option value="free">free</option>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="detail" items="${product.detail}">
+												<option value="${detail.sizeOption}">${detail.sizeOption}</option>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
 									</select>
 								</div>
 								<div>
@@ -121,15 +129,15 @@ display:inline-block;
 									<c:when test="${user.authority eq '관리자'}">
 										<!-- 관리자 전용 버튼 -->
 										<div>
-											<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/product-regist';">수정하기</button>
-											<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/product-delete.do?productNo=${product.productId}';">삭제하기</button>
+											<button type="button" class="my-btn" onclick="location.href='/oyeongshop/product-regist';">수정하기</button>
+											<button type="button" class="my-btn" onclick="location.href='/oyeongshop/product-delete.do?productNo=${product.productId}';">삭제하기</button>
 										</div>
 									</c:when>
 									<c:otherwise>
 										<button type="submit" class="my-btn">Buy Now</button>
 									</c:otherwise>
 								</c:choose>
-								<p>review(0)</p>
+								<p>review(<c:out value="${fn:length(reviews)}"></c:out>)</p>
 							</div>
 						</td>
 					</tr>
@@ -186,7 +194,7 @@ display:inline-block;
 					</c:forEach>
 
 				</table>
-				<c:if test="${writeCheck }">
+				<c:if test="${writeCheck}">
 					<button type="button" class="my-btn"
 						onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
 				</c:if>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion()%>
 <html>
 <head>
 <title>OyeongShop</title>
@@ -46,13 +45,13 @@
 							name="productContent">
 					</div>
 					<br />
-					<fieldset>
+					<!-- <fieldset> -->
 						<div>
-							<span class="title">색상</span> <input type="text" name="color">
+							<span class="title">색상</span> <input type="text" name="productDetail[0].color">
 						</div>
 						<br />
 						<div>
-							<span class="title">사이즈</span> <select name="sizeOption">
+							<span class="title">사이즈</span> <select name="productDetail[0].sizeOption">
 								<option value="free">free</option>
 								<option value="small">S</option>
 								<option value="medium">M</option>
@@ -61,9 +60,11 @@
 						</div>
 						<br />
 						<div>
-							<span class="title">재고</span> <input type="text" name="stock">
+							<span class="title">재고</span> <input type="text" name="productDetail[0].stock">
 						</div>
-					</fieldset>
+						<!-- <button type="button">옵션 추가하기</button> -->
+					<!-- </fieldset> -->
+					<br/>
 					<div>
 						<span class="title">상품 이미지(메인)</span> <input type="file"  accept="image/*"
 							name="mainImgFile" onchange="setThumbnail(event);">

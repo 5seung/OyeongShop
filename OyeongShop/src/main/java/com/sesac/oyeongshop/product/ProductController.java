@@ -2,6 +2,7 @@ package com.sesac.oyeongshop.product;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Stack;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sesac.oyeongshop.FileUploadService;
 import com.sesac.oyeongshop.dto.ProductDTO;
 import com.sesac.oyeongshop.dto.ProductDetailDTO;
+import com.sesac.oyeongshop.dto.ProductDetailListDTO;
 import com.sesac.oyeongshop.dto.ReviewDTO;
 import com.sesac.oyeongshop.dto.UserDTO;
 import com.sesac.oyeongshop.review.ReviewService;
@@ -66,7 +68,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product-regist.do", method = RequestMethod.POST)
-	public String productRegist(ProductDTO productInfo, ProductDetailDTO productDetail,
+	public String productRegist(ProductDTO productInfo, ProductDetailListDTO productDetailList,
 			@RequestParam("mainImgFile") MultipartFile mainImg,
 			@RequestParam("subImgFile") List<MultipartFile> subImgList, HttpServletRequest request)
 			throws IOException, ServletException {
@@ -75,12 +77,15 @@ public class ProductController {
 
 		productInfo.setMainImg(uniqueName);
 		int key = service.insert(productInfo);
-		service.insert(key, productDetail);
+		for(ProductDetailDTO productDetail : productDetailList.getProductDetail()) {
+			service.insert(key, productDetail);
+		}
+
 		for (MultipartFile subImg : subImgList) {
 			uniqueName = fileUploadService.fileUpload(request, subImg);
 			service.insert(key, uniqueName);
 		}
-		return "productRegist";
+		return "redirect:/product-regist";
 	}
 
 	@RequestMapping(value = "/product-delete.do", method = RequestMethod.GET)
