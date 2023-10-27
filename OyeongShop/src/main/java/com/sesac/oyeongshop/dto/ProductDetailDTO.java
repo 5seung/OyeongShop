@@ -1,45 +1,68 @@
 package com.sesac.oyeongshop.dto;
 
-import java.util.Date;
-
 public class ProductDetailDTO {
-	private int productImgId;	//PK
-	private String storedFileName;
-	private int productId;	//FK
-	
+	private int productDetailId; // PK
+	private String color;
+	private String sizeOption;
+	private String stock;
+	private int productId; // FK
+
 	public ProductDetailDTO() {
 		super();
 	}
-	
-	public ProductDetailDTO(int productImgId, String storedFileName, int productId) {
+
+	public ProductDetailDTO(int productDetailId, String color, String sizeOption, String stock, int productId) {
 		super();
-		this.productImgId = productImgId;
-		this.storedFileName = storedFileName;
+		this.productDetailId = productDetailId;
+		this.color = color;
+		this.sizeOption = sizeOption;
+		this.stock = stock;
 		this.productId = productId;
 	}
-	public int getProductImgId() {
-		return productImgId;
+
+	public int getProductDetailId() {
+		return productDetailId;
 	}
-	public void setProductImgId(int productImgId) {
-		this.productImgId = productImgId;
+
+	public void setProductDetailId(int productDetailId) {
+		this.productDetailId = productDetailId;
 	}
-	public String getStoredFileName() {
-		return storedFileName;
+
+	public String getColor() {
+		return color;
 	}
-	public void setStoredFileName(String storedFileName) {
-		this.storedFileName = storedFileName;
+
+	public void setColor(String color) {
+		this.color = color;
 	}
+
+	public String getSizeOption() {
+		return sizeOption;
+	}
+
+	public void setSizeOption(String sizeOption) {
+		this.sizeOption = sizeOption;
+	}
+
+	public String getStock() {
+		return stock;
+	}
+
+	public void setStock(String stock) {
+		this.stock = stock;
+	}
+
 	public int getProductId() {
 		return productId;
 	}
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "ProductImgDTO [productImgId=" + productImgId + ", storedFileName=" + storedFileName + ", productId="
-				+ productId + "]";
+		return "ProductDetailDTO [productDetailId=" + productDetailId + ", color=" + color + ", sizeOption=" + sizeOption
+				+ ", stock=" + stock + ", productId=" + productId + "]";
 	}
-
 }

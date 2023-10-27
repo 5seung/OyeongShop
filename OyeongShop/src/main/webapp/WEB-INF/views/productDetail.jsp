@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <title>OyeongShop</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	function count(type) {
 		// 결과를 표시할 element
@@ -25,25 +27,12 @@
 	}
 </script>
 <style type="text/css">
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em; 
-}
-#left{
-	width: 25%;
-}
-#right{
-	width: 100%;
-	padding: 0 3em;
-}
 div{
 	padding: 0.5em 0;
 }
 #product_img {
 	width: 28em;
+	height: 32em;
 	padding-right: 2em;
 }
 
@@ -51,17 +40,33 @@ img {
 	width: 100%;
 	object-fit: cover;
 }
+.sub_img{
+	width: 40em;
+	padding: 1em;
+}
+.sub_img_cover{
+	text-align: center;
+}
 
 #product_describe {
 	padding: 1em;
 	max-width: 30em;
 }
+.sub_title{
+display:inline-block;
+	width: 5em;
+}
 .my-btn {
-	width: 49%;
+	width: 45%;
 	color: black;
 	border: none;
 	padding: 10px;
 	cursor: pointer;
+}
+#review_table{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 2em;
 }
 </style>
 </head>
@@ -74,54 +79,126 @@ img {
 		</div>
 		<div id="right">
 			<form action="/oyeongshop/order">
+			<input type="hidden" value="${sessionScope.user.userId}" name="userId">
+			<input type="hidden" value="${product.mainImg}" name="mainImg">
+			<input type="hidden" value="${product.name}" name="productName">
+			<input type="hidden" value="${product.productId}" name="productId">
+			<input type="hidden" value="${product.price}" name="price">
 				<table>
 					<tr>
 						<td>
 							<div id="product_img">
-								<img alt="" src="resources/static/img/sample1.png">
+								<img alt="" src="upload/${product.mainImg}">
 							</div>
 						</td>
 						<td>
 							<div id="product_describe">
-								<h3>스퀘어 디테 팬츠(2c)</h3>
-								<div>탄탄한 두께감으로 초겨울까지 착용할 수 있는 카고팬츠입니다. 전면의 큰 스퀘어 포켓과 카고 포켓,
-									그리고 백 포켓까지 사각진 포켓 디테일들이 매력적으로 다가오는 제품입니다. 힙하지만 데일리하게 착용할 수 있는
-									제품이며, 은은한 크림 색상과 진한 네이비 색상으로 깔끔하게 코디할 수 있는 코튼팬츠입니다. 기장이 긴편이라 밑단으로
-									갈수록 살짝 좁아지는 스트레이트핏을 보여주며 여유있게 나온 허리와 힙 사이즈로 골반에 살짝 걸쳐 착용해주어도 멋스럽게
-									코디할 수 있습니다.</div>
-								<p><span>가격</span> ₩49,400</p>
+								<h3><c:out value="${product.name}"></c:out></h3>
+								<div><c:out value="${product.productContent}"></c:out></div>
+								<p><span class="sub_title">가격</span> ₩ <fmt:formatNumber value="${product.price}"/> </p>
 								<div>
-									<span>색상 </span> <select name="color">
+									<span class="sub_title">색상 </span> <select name="color">
 										<option value="none">=== 선택 ===</option>
-										<option value="#">크림</option>
-										<option value="#">블랙</option>
+										<c:forEach var="detail" items="${product.detail}">
+										<option value="${detail.color}">${detail.color}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div>
-									<span>사이즈 </span> <select name="size">
+									<span class="sub_title">사이즈 </span> <select name="size">
 										<option value="none">=== 선택 ===</option>
-										<option value="#">s</option>
-										<option value="#">L</option>
+										<c:choose>
+											<c:when test="${product.detail[0].sizeOption eq 'free'}">
+											<option value="free">free</option>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="detail" items="${product.detail}">
+												<option value="${detail.sizeOption}">${detail.sizeOption}</option>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
 									</select>
 								</div>
 								<div>
-									<span>수량</span> <span id='result'>0</span> <input
+									<span class="sub_title">수량</span> <input name="quantity" id='result' value="1" readonly> <input
 										type='button' onclick='count("plus")' value='+' /> <input
 										type='button' onclick='count("minus")' value='-' />
 								</div>
 								<p>Total</p>
-								<button type="submit" class="my-btn">Buy Now</button>
-								<!-- 관리자 전용 버튼 -->
-								<div>
-									<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/#';">수정하기</button>
-									<button type="button" class="my-btn" onclick="location.href='http://localhost:8090/oyeongshop/#';">삭제하기</button>
-								</div>
-								<p>review(0)</p>
+								<c:choose>
+									<c:when test="${user.authority eq '관리자'}">
+										<!-- 관리자 전용 버튼 -->
+										<div>
+											<button type="button" class="my-btn" onclick="location.href='/oyeongshop/product-regist';">수정하기</button>
+											<button type="button" class="my-btn" onclick="location.href='/oyeongshop/product-delete.do?productNo=${product.productId}';">삭제하기</button>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<button type="submit" class="my-btn">Buy Now</button>
+									</c:otherwise>
+								</c:choose>
+								<p>review(<c:out value="${fn:length(reviews)}"></c:out>)</p>
 							</div>
 						</td>
 					</tr>
+					<c:if test="${not empty product.subImgs}">
+					<tr>
+						<td colspan="2">
+						<br/><br/><br/>
+						 	<h3>상세 이미지</h3>
+						</td>
+					</tr>
+					</c:if>
+					<c:forEach var="subImg" items="${product.subImgs}">
+					<tr>
+						<td colspan="2">
+						<div class="sub_img_cover">
+							<img alt="이미지를 불러올 수 없습니다." src="upload/${subImg.storedFileName}" class="sub_img">
+						</div>
+						</td>
+					</tr>
+					</c:forEach>
 				</table>
 			</form>
+			<!-- 리뷰리스트 -->
+			<br/><br/><br/>			
+			<div id="reviewList">
+				<h3>Review</h3>
+				<table id="review_table">
+					<tr>
+						<th>no</th>
+						<th>content</th>
+						<th>writer</th>
+						<th>date</th>
+						<th>modify/delete</th>
+					</tr>
+					
+					<c:forEach var="review" items="${reviews}" varStatus="status">
+					<tr>
+						<td>${status.count}</td>
+						<td>${review.content}</td>
+						<td>${review.userId}</td>
+						<td>${review.uploadDate}</td>
+						<td>
+						<c:choose>
+							<c:when test="${sessionScope.user.userId eq review.userId}">
+								<button id="modifyBtn" type="button" onclick="location.href = 'pwdCheck?reviewId=${review.reviewId}'">수정</button>
+								<button id="deleteBtn" type="button" onclick="location.href = 'pwdCheckDel?reviewId=${review.reviewId}'">삭제</button>
+							</c:when>
+							<c:otherwise>
+								<p>권한이 없습니다.</p>
+							</c:otherwise>
+						</c:choose>
+						</td>
+					</tr>
+					</c:forEach>
+
+				</table>
+				<c:if test="${writeCheck}">
+					<button type="button" class="my-btn"
+						onclick="location.href = 'reviewWrite?productId=${product.productId}'">WRITE</button>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="./common/footer.jsp"></jsp:include>

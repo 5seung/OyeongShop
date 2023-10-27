@@ -18,7 +18,9 @@ public class ProductRowMapper implements RowMapper<ProductDTO>{
 				rs.getInt(4),
 				rs.getDate(5),
 				rs.getString(6),
-				rs.getString(7)
+				rs.getString(7),
+				rs.getString(8),
+				rs.getString(9)
 				);
 		return product;
 	}

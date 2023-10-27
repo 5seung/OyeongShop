@@ -11,7 +11,7 @@ public class ReviewRowMapper implements RowMapper<ReviewDTO> {
 
 	@Override
 	public ReviewDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ReviewDTO rdto = new ReviewDTO(
+		ReviewDTO review = new ReviewDTO(
 				rs.getInt(1),
 				rs.getString(2),
 				rs.getInt(3),
@@ -21,6 +21,6 @@ public class ReviewRowMapper implements RowMapper<ReviewDTO> {
 				rs.getString(7),
 				rs.getInt(8)
 				);
-		return null;
+		return review;
 	}	
 }

@@ -1,68 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <html>
 <head>
 <title>OyeongShop</title>
-<style type="text/css">
-#container {
-	text-align: center;
-}
-
-.title {
-	display: inline-block;
-	width: 10em;
-}
-
-input {
-	width: 15em;
-}
-</style>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
+<link href="resources/static/css/productRegist.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="resources/static/js/productRegist.js"></script>
 </head>
 <body>
-<jsp:include page="./common/header.jsp"></jsp:include>
+	<jsp:include page="./common/header.jsp"></jsp:include>
 	<div id="container">
-		<h3>상품등록</h3>
-		<form action="">
-			<div>
-				<span class="title">카테고리</span> <input type="text"><br />
+		<div id="left">
+			<jsp:include page="./common/sideNav.jsp"></jsp:include>
+		</div>
+		<div id="right">
+			<div id="product-regist-form">
+				<h2>상품등록</h2>
+				<form action="/oyeongshop/product-regist.do" method="post"
+					enctype="multipart/form-data">
+					<div>
+						<span class="title">카테고리</span> <select name="category">
+							<option value="Outer">Outer</option>
+							<option value="Top">Top</option>
+							<option value="Bottom">Bottom</option>
+						</select>
+					</div>
+					<br />
+					<div>
+						<span class="title">상품 이름</span> <input type="text" name="name">
+					</div>
+					<br />
+					<div>
+						<span class="title">매입가</span> <input type="text"
+							name="productionCost">
+					</div>
+					<br />
+					<div>
+						<span class="title">판매가</span> <input type="text" name="price">
+					</div>
+					<br />
+					<div>
+						<span class="title">상세내용</span> <input type="text"
+							name="productContent">
+					</div>
+					<br />
+					<!-- <fieldset> -->
+						<div>
+							<span class="title">색상</span> <input type="text" name="productDetail[0].color">
+						</div>
+						<br />
+						<div>
+							<span class="title">사이즈</span> <select name="productDetail[0].sizeOption">
+								<option value="free">free</option>
+								<option value="small">S</option>
+								<option value="medium">M</option>
+								<option value="large">L</option>
+							</select>
+						</div>
+						<br />
+						<div>
+							<span class="title">재고</span> <input type="text" name="productDetail[0].stock">
+						</div>
+						<!-- <button type="button">옵션 추가하기</button> -->
+					<!-- </fieldset> -->
+					<br/>
+					<div>
+						<span class="title">상품 이미지(메인)</span> <input type="file"  accept="image/*"
+							name="mainImgFile" onchange="setThumbnail(event);">
+						<div id="image_container"></div>
+
+					</div>
+					<br />
+					<div>
+						<span class="title">상품 이미지(상세)</span> <input type="file"  accept="image/*"
+							name="subImgFile" onchange="setThumbnail2(event);" multiple/>
+							
+						<div id="image_container2"></div>
+					</div>
+					<br />
+					<button type="submit">등록하기</button>
+				</form>
 			</div>
-			<br />
-			<div>
-				<span class="title">상품 이름</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">색상</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">사이즈</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">가격</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">상세내용</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">재고</span> <input type="text">
-			</div>
-			<br />
-			<div>
-				<span class="title">상품 이미지(메인)</span> <input type="file">
-			</div>
-			<br />
-			<div>
-				<span class="title">상품 이미지(상세)</span> <input type="file">
-			</div>
-			<br />
-			<button type="button">등록하기</button>
-		</form>
+		</div>
 	</div>
 	<jsp:include page="./common/footer.jsp"></jsp:include>
 </body>

@@ -14,13 +14,15 @@ public class OrderRowMapper implements RowMapper<OrderDTO>{
 		OrderDTO order = new OrderDTO(
 				rs.getInt(1), 
 				rs.getString(2), 
-				rs.getInt(3),
+				rs.getString(3),
 				rs.getString(4),
 				rs.getString(5),
-				rs.getString(6),
-				rs.getDate(7)
+				rs.getDate(6),
+				rs.getInt(7),
+				rs.getString(8),
+				rs.getString(9),
+				rs.getString(10)
 				);
 		return order;
 	}
-
 }

@@ -1,59 +1,49 @@
 package com.sesac.oyeongshop.dto;
 
-import java.util.Date;
-
 public class ProductImgDTO {
-	private int productDetailId;	//PK
-	private String color;
-	private String sizeOption;	
-	private String stock;	
-	private int productId;	//FK
-	
+	private int productImgId; // PK
+	private String storedFileName;
+	private int productId; // FK
+
 	public ProductImgDTO() {
 		super();
 	}
-	public ProductImgDTO(int productDetailId, String color, String sizeOption, String stock, int productId) {
+
+	public ProductImgDTO(int productImgId, String storedFileName, int productId) {
 		super();
-		this.productDetailId = productDetailId;
-		this.color = color;
-		this.sizeOption = sizeOption;
-		this.stock = stock;
+		this.productImgId = productImgId;
+		this.storedFileName = storedFileName;
 		this.productId = productId;
 	}
-	public int getProductDetailId() {
-		return productDetailId;
+
+	public int getProductImgId() {
+		return productImgId;
 	}
-	public void setProductDetailId(int productDetailId) {
-		this.productDetailId = productDetailId;
+
+	public void setProductImgId(int productImgId) {
+		this.productImgId = productImgId;
 	}
-	public String getColor() {
-		return color;
+
+	public String getStoredFileName() {
+		return storedFileName;
 	}
-	public void setColor(String color) {
-		this.color = color;
+
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
 	}
-	public String getSizeOption() {
-		return sizeOption;
-	}
-	public void setSizeOption(String sizeOption) {
-		this.sizeOption = sizeOption;
-	}
-	public String getStock() {
-		return stock;
-	}
-	public void setStock(String stock) {
-		this.stock = stock;
-	}
+
 	public int getProductId() {
 		return productId;
 	}
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "ProductImgDTO [productDetailId=" + productDetailId + ", color=" + color + ", sizeOption=" + sizeOption
-				+ ", stock=" + stock + ", productId=" + productId + "]";
+		return "ProductImgDTO [productImgId=" + productImgId + ", storedFileName=" + storedFileName + ", productId="
+				+ productId + "]";
 	}
+
 }

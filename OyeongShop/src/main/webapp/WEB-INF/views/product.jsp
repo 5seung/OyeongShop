@@ -1,35 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <title>OyeongShop</title>
+<link href="resources/static/css/common.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-#container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 20px;
-	min-height: 22em; 
-}
-#left{
-	width: 25%;
-}
-#right{
-	width: 100%;
-	padding: 0 3em;
-}
 table {
 	text-align: center;
 }
 td{
 	padding: 1em;
 }
-
-img {
-	width: 100%;
-	object-fit: cover;
+#product_img {
+	width: 24em;
+	height: 30em;
 }
 </style>
 </head>
@@ -41,23 +27,23 @@ img {
 			<jsp:include page="./common/sideNav.jsp"></jsp:include>
 		</div>
 		<div id="right">
-			<h2>Outer</h2>
+			<h2><c:out value="${category}"></c:out></h2>
 			<table>
+			<c:forEach var="idx" begin="0" end="9" step="3">
 				<tr>
-					<td>
-						<div onclick="location.href='http://localhost:8090/oyeongshop/product-detail';">
-							<img alt="" src="resources/static/img/sample1.png">
-							<p>스퀘어 디테 팬츠(2c)</p>
-							<p>₩49,400</p>
-						</div>
-					</td>
-					<td><img alt="" src="resources/static/img/sample2.png">
-						<p>워터 터틀 울 티(6c)</p>
-						<p>₩49,400</p></td>
-					<td><img alt="" src="resources/static/img/sample3.png">
-						<p>숄더 리본 블라우스</p>
-						<p>₩49,400</p></td>
+					<c:forEach items="${products}" var="product" begin="${idx}" end="${idx+2}">
+						<td>
+							<div onclick="location.href='/oyeongshop/product-detail?productNo=${product.productId}';">
+								<div id="img_cover">
+									<img id="product_img" alt="" src="upload/${product.mainImg}">
+								</div>
+								<p><c:out value="${product.name}"></c:out></p>
+								<p>₩ <fmt:formatNumber value="${product.price}"/> </p>
+							</div>
+						</td>
+					</c:forEach>
 				</tr>
+			</c:forEach> 
 			</table>
 		</div>
 	</div>
