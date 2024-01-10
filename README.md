@@ -8,7 +8,7 @@
     |:---:|:---:|
     | <strong>주요 역할</strong> <br> &middot; 전체 프로젝트 관리 <br> &middot; 회원 및 상품 파트 <br> &middot; 프론트 디자인 | <strong>주요 역할</strong> <br> &middot; 리뷰 파트 <br/> &middot; 프론트 디자인 |
 
-<br>
+<br/>
 
 ##  🛠 기술스택
 
@@ -29,12 +29,15 @@
 ### **[Tool & Environment]**
 ![eclipse_ide](https://img.shields.io/badge/eclipse_ide-%2C2255.svg?style=for-the-badge&logo=eclipseide&logoColor=white)
 
+<br/>
+
 ## 💻 ERD
 - [📌ERD 링크](https://www.erdcloud.com/d/vwKwCAP5Y26J2y59E)
 - Table 7
 
 ![image](https://github.com/5seung/OyeongShop/assets/126163816/eb9fd4a3-edd3-44df-a961-eb494402bf98)
 
+<br/>
 
 ## 📍 주요 기능
 ### 유저(회원) 권한
@@ -102,7 +105,7 @@
 
 
 
-## 💊 트러블 슈팅
+<br/>
 
 ## 💫 프로젝트 회고
 <details>
