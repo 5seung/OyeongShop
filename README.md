@@ -33,7 +33,7 @@
 - [📌ERD 링크](https://www.erdcloud.com/d/vwKwCAP5Y26J2y59E)
 - Table 7
 
-![image](#)
+![image](https://github.com/5seung/OyeongShop/assets/126163816/eb9fd4a3-edd3-44df-a961-eb494402bf98)
 
 
 ## 📍 주요 기능
