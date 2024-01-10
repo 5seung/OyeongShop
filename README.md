@@ -147,4 +147,4 @@ git에 대한 지식을 보충해서 다음에는 git을 활용하여 버전관�
 ## 🚀 정보
 - 청년취업사관학교 새싹 영등포 SW캠퍼스<br>
   - 백엔드 구축을 위한 클라우드 기술 활용 개발자 과정(JAVA 기반)
-- Sesac 🌱 Final Project
+- Sesac 🌱 mini Project
